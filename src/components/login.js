@@ -3,22 +3,23 @@ import withFirebaseAuth from  'react-with-firebase-auth';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from '../firebase';
+// import './styles/Login.css';
 
 
 class Login extends Component {
     render() {
         const { user, signOut, signInWithGoogle } = this.props;
         return (
-            <div>
+            <div className='Login'>
                 {
                     user ?
-                     <p>Hola, {user.displayName}</p>
-                     : <p>Inicia sesión para abrir tu cuaderno</p>
+                     <p className='GoogLogText'>Hola, {user.displayName}</p>
+                     : <p className='GoogLogText'>Inicia sesión para abrir tu cuaderno</p>
                 }
                 {
                     user ?
-                    <button onClick={signOut}>Cerrar sesión</button>
-                    : <button onClick={signInWithGoogle}>Iniciar sesión con Google</button>
+                    <button  className='GoogLogButton' onClick={signOut}>Cerrar sesión</button>
+                    : <button  className='GoogLogButton' onClick={signInWithGoogle}>Iniciar sesión con Google</button>
                 }
             </div>
         )
