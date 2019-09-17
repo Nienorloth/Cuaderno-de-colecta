@@ -6,7 +6,7 @@ import {Table, Button, Row, Col, InputGroup, Input} from 'reactstrap';
 const db = FBApp.firestore();
 db.settings({timestampsInSnapshots:true});
 
-class CollectionPage extends React.Component {
+class CollectionPage1 extends React.Component {
 
     state = {
         items:[],
@@ -16,7 +16,7 @@ class CollectionPage extends React.Component {
     }
     
     componentDidMount(){
-        db.collection('Insectos').onSnapshot((snapShots)=>{
+        db.collection('1').onSnapshot((snapShots)=>{
             this.setState({
                 items:snapShots.docs.map(doc=>{
                     return {id:doc.id,data:doc.data()}
@@ -38,7 +38,7 @@ action = () => {
     const { inputValue, edit } = this.state;
 
     !edit ? 
-    db.collection('Insectos').add({
+    db.collection('1').add({
         item: inputValue
     }).then(()=>{
         console.log('Agregado')
@@ -48,8 +48,8 @@ action = () => {
     this.update();
 };
 
-getInsectos=(id)=>{
-    let docRef=db.collection('Insectos').doc(id);
+getCol1=(id)=>{
+    let docRef=db.collection('1').doc(id);
 
     docRef.get().then((doc)=>{
         if(doc.exists){
@@ -68,7 +68,7 @@ getInsectos=(id)=>{
 
 update=()=>{
     const{id,inputValue} = this.state;
-    db.collection('Insectos').doc(id).update({
+    db.collection('1').doc(id).update({
         item:inputValue
     }).then(()=>{
         console.log('actualizado')
@@ -80,7 +80,7 @@ update=()=>{
   render() {
       const {items, inputValue} = this.state;
       return (
-          <div className='InsectsCol'>
+          <div className='ColNotes'>
               <Row>
                   <Col xs='10'>
                       <InputGroup>
@@ -101,17 +101,12 @@ update=()=>{
               </Row>
               <Table hover className='text-center'>
                   <thead>
-                      <tr>
-                          <th>Nombre</th>
-                          <th>Editar</th>
-                          <th>Eliminar</th>
-                      </tr>
                   </thead>
                   <tbody>
                     {items && items !== undefined ? items.map( (item, key) => (
                         <tr key={key}>
                          <td>{item.data.item}</td>
-                         <td><Button color='warning' onClick={()=> this.getInsectos(item.id)}>Editar</Button></td>
+                         <td><Button color='warning' onClick={()=> this.getCol1(item.id)}>Editar</Button></td>
                          <td><Button color='danger'>Eliminar</Button></td>
                         </tr>
                     )): null }
@@ -122,4 +117,4 @@ update=()=>{
   }
 }
 
-export default CollectionPage;
+export default CollectionPage1;

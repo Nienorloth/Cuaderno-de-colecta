@@ -12,9 +12,9 @@ class NotebooksPage extends React.Component {
              Selecciona cuaderno
             </h1>
         <body  >
-           <Link to='/pages/collectionPage' className='Notebooks'><img alt='Insectos' className='Collections' width='200' src={Insects}/> </Link>
-           <Link to='/pages/collectionPage' className='Notebooks'><img alt='Plantas' className='Collections'width='200' src={Plants}/></Link>
-           <Link to='/pages/collectionPage' className='Notebooks'><img alt='Fósiles' className='Collections'width='200' src={Fossils}/></Link>
+           <Link to='/pages/collectionPage1' className='Notebooks'><img alt='1' className='Collections' width='200' src={Insects}/> </Link>
+           <Link to='/pages/collectionPage2' className='Notebooks'><img alt='2' className='Collections'width='200' src={Plants}/></Link>
+           <Link to='/pages/collectionPage3' className='Notebooks'><img alt='3' className='Collections'width='200' src={Fossils}/></Link>
         </body>
         </div>
         );
