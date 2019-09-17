@@ -15,11 +15,11 @@ class App extends Component {
     <BrowserRouter>
       <Layout>
       <Switch>
-        <Route exact path='/pages/loginPage' component={LoginPage} />
-        <Route exact path='/pages/notebooksPage' component={NotebooksPage} />
-        <Route exact path='/pages/collectionPage1' component={CollectionPage1} />
-        <Route exact path='/pages/collectionPage2' component={CollectionPage2} />
-        <Route exact path='/pages/collectionPage3' component={CollectionPage3} />
+        <Route exact path='/' component={LoginPage} />
+        <Route  exact path='/pages/notebooksPage' component={NotebooksPage} />
+        <Route  exact path='/pages/collectionPage1' component={CollectionPage1} />
+        <Route  exact path='/pages/collectionPage2' component={CollectionPage2} />
+        <Route  exact path='/pages/collectionPage3' component={CollectionPage3} />
       </Switch>
       </Layout>
     </BrowserRouter>
