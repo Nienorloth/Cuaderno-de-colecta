@@ -1,31 +1,23 @@
 import React from 'react';
-import NavBar from '../components/navBar';
 import Insects from '../images/insects.png';
 import Plants from '../images/plants.png';
 import Fossils from '../images/fossils.png';
-import Footer from '../components/footer';
+import { Link } from 'react-router-dom';
 
-class Notebooks extends React.Component {
+class NotebooksPage extends React.Component {
     render() {
         return (
             <div className='NotebooksBody'>
-            <NavBar /> 
             <h1 className='CollectionText'>
-             Selecciona tu cuaderno
+             Selecciona cuaderno
             </h1>
-        <body >
-            <a><img className='Collections' width='200' src={Insects}/> </a>
-            <a><img className='Collections'width='200' src={Plants}/></a>
-            <a><img className='Collections'width='200' src={Fossils}/></a>
+        <body  >
+           <Link to='/pages/collectionPage' className='Notebooks'><img alt='Insectos' className='Collections' width='200' src={Insects}/> </Link>
+           <Link to='/pages/collectionPage' className='Notebooks'><img alt='Plantas' className='Collections'width='200' src={Plants}/></Link>
+           <Link to='/pages/collectionPage' className='Notebooks'><img alt='Fósiles' className='Collections'width='200' src={Fossils}/></Link>
         </body>
-        <Footer />
-        {/* <footer className='NotebooksFooter'>
-            <button className='FooterButtons'>Nuevo cuaderno</button>
-            <button className='FooterButtons'>Editar cuaderno</button>
-            <button className='FooterButtons'>Eliminar cuaderno</button>
-        </footer> */}
         </div>
         );
     }
 }
-export default Notebooks;
+export default NotebooksPage;

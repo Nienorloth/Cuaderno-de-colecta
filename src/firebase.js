@@ -1,7 +1,7 @@
+
 export default {
     apiKey: "AIzaSyAPkfDXn03GigYudTvv6rYcYHGv62bGkYQ",
     authDomain: "cuaderno-de-colectas.firebaseapp.com",
-    databaseURL: "https://cuaderno-de-colectas.firebaseio.com",
     projectId: "cuaderno-de-colectas",
     storageBucket: "",
     messagingSenderId: "494379151013",
