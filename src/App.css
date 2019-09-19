@@ -74,7 +74,7 @@ padding: 2%;
 .Login {
   display: inline;
 }
-.NotebooksBody, .CollectionsBody {
+.NotebooksBody {
  height: 100%;
  background-color: black;
  background: cover;
@@ -87,8 +87,9 @@ padding: 2%;
   font-family: inherit;
 }
 .Notebooks {
-  margin-left: 12%;
+  margin-left: 14%;
   float: left;
+  margin-top: -2.5%;
 }
 .FooterButtons {
   display: inline;

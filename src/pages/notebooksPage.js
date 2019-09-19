@@ -11,7 +11,7 @@ class NotebooksPage extends React.Component {
             <h1 className='CollectionText'>
              Selecciona cuaderno
             </h1>
-        <body  >
+        <body>
            <Link to='/pages/collectionPage1' className='Notebooks'><img alt='1' className='Collections' width='200' src={Insects}/> </Link>
            <Link to='/pages/collectionPage2' className='Notebooks'><img alt='2' className='Collections'width='200' src={Plants}/></Link>
            <Link to='/pages/collectionPage3' className='Notebooks'><img alt='3' className='Collections'width='200' src={Fossils}/></Link>

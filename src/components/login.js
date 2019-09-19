@@ -4,20 +4,30 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import FBApp from '../FirestoreConfig';
 import GoogleImg from '../images/google.png';
+import { withRouter } from "react-router-dom";
+  
+//   const Nav = (props) => {
+//       const {history} = props;
   
 
 
 class Login extends Component {
-
-    handleClick = () => {
-        const {  signInWithGoogle } = this.props;
+ 
+    handleClick = (props) => {
+        const {  signInWithGoogle, history } = this.props;
         signInWithGoogle().then(() =>
-       this.props.history.push('/pages/notebooksPage')
+        this.props.history.push('/pages/notebooksPage')
         )
     }
-
+    handleClickOut = (props) => {
+        const {  signOut, history } = this.props;
+        signOut().then(() =>
+        this.props.history.push('/')
+        )
+    }
     render() {
-        const { user, signOut } = this.props;
+    
+        const { user, signOut, history } = this.props;
         return (
             <div className='Login'>
                 {
@@ -27,7 +37,7 @@ class Login extends Component {
                 }
                 {
                     user ?
-                    <button  className='GoogLogButton' onClick={signOut}><img src={GoogleImg} width='50' className='GoogImg' /> Cerrar sesión</button>
+                    <button  className='GoogLogButton' onClick={this.handleClickOut}><img src={GoogleImg} width='50' className='GoogImg' /> Cerrar sesión</button>
                     : <button className='GoogLogButton' onClick={this.handleClick}><img src={GoogleImg} width='50' className='GoogImg' /> Iniciar sesión con Google</button>
                 }
                 
@@ -43,7 +53,7 @@ const providers = {
 };
 
 
-export default withFirebaseAuth({
+export default withRouter(withFirebaseAuth({
     providers,
     firebaseAppAuth
-})(Login);
+})(Login));

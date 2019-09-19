@@ -1,7 +1,7 @@
 import React from 'react';
 import FBApp from '../FirestoreConfig';
 import 'firebase/firestore';
-import {Table, Button, Row, Col, InputGroup, Input} from 'reactstrap';
+import {Table, Button, Row, Col, InputGroup, Input, Fade} from 'reactstrap';
 
 const db = FBApp.firestore();
 db.settings({timestampsInSnapshots:true});
@@ -13,6 +13,8 @@ class CollectionPage3 extends React.Component {
         inputValue: '',
         edit:false,
         id:'',
+        fadeIn:false,
+        message:'',
     }
     
     componentDidMount(){
@@ -41,9 +43,9 @@ action = () => {
     db.collection('3').add({
         item: inputValue
     }).then(()=>{
-        console.log('Agregado')
+        this.message('Agregado')
     }).catch(()=>{
-        console.log('error')
+        this.message('Error')
     }) :
     this.update();
 };
@@ -66,17 +68,39 @@ getCol3=(id)=>{
     })
 };
 
+deleteCol3=(id)=>{
+    db.collection('3').doc(id).delete()
+    this.message('Eliminado')
+}
+
+
 update=()=>{
     const{id,inputValue} = this.state;
     db.collection('3').doc(id).update({
         item:inputValue
     }).then(()=>{
-        console.log('actualizado')
+        this.message('Actualizado')
+        this.setState({
+            edit:false
+        })
     }).catch((error)=>{
-        console.log(error);
+        this.message('Error');
     })
 }
-
+message=(message)=>{
+    this.setState({
+        inputValue:'',
+        fadeIn: true,
+        message: message
+    })
+    
+    setTimeout(()=>{
+        this.setState({
+            fadeIn:false,
+            message:''
+        })
+    },3000);
+    }    
   render() {
       const {items, inputValue} = this.state;
       return (
@@ -85,7 +109,7 @@ update=()=>{
                   <Col xs='10'>
                       <InputGroup>
                         <Input 
-                        placeholder='Agregar un nuevo Item'
+                        placeholder='Agregar un nuevo espécimen'
                         value={inputValue}
                         onChange={this.changeValue}
                         />
@@ -99,6 +123,10 @@ update=()=>{
                     </div>
                   </Col>
               </Row>
+              <Fade in={this.state.fadeIn} tag='h6' className='mt-3 text-center text-success'>
+                  {this.state.message}
+              </Fade>
+
               <Table hover className='text-center'>
                   <thead>
                   </thead>
@@ -107,7 +135,7 @@ update=()=>{
                         <tr key={key}>
                          <td>{item.data.item}</td>
                          <td><Button color='warning' onClick={()=> this.getCol3(item.id)}>Editar</Button></td>
-                         <td><Button color='danger'>Eliminar</Button></td>
+                         <td><Button color='danger' onClick={()=> this.deleteCol3(item.id)}>Eliminar</Button></td>
                         </tr>
                     )): null }
                   </tbody>
