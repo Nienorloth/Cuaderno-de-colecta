@@ -1,12 +1,12 @@
 import React from 'react';
 import FBApp from '../FirestoreConfig';
 import 'firebase/firestore';
+import 'firebase/storage';
 import {Table, Button, Row, Col, Input, Fade, Form, FormGroup, Label, Modal, ModalHeader, ModalFooter, ModalBody} from 'reactstrap';
 
 const db = FBApp.firestore();
 db.settings({timestampsInSnapshots:true});
-    const storageRef = FBApp.storage().ref(); 
-
+const storage = FBApp.storage();
 
 class CollectionPage1 extends React.Component {
 
@@ -43,7 +43,6 @@ this.setState({
 
 action = () => {
     const { inputValue, inputValue1, inputValue2, inputPicture, edit } = this.state;
-console.log(inputValue2)
     !edit ? 
     db.collection('1').add({
         Orden: inputValue,
@@ -98,8 +97,21 @@ update=()=>{
         this.message('Error');
     })
 }
-// uploadFile ()=>{
-// }
+uploadPic=(files)=>{
+    const{id,inputValue, inputValue1, inputValue2, inputPicture} = this.state;
+
+    const storageRef = storage.ref('images');
+    const picFile = storageRef.child('inputPicture');
+    //const file=files.item(0);
+    const task = picFile.put(files[0]);
+
+    task.then(snapshot => {
+        console.log(snapshot)
+        snapshot.ref.getDownloadURL()
+        .then(data => document.querySelector('#Pic').setAttribute('src', data))
+        
+    })
+}
 
 message=(message)=>{
 this.setState({
@@ -124,7 +136,7 @@ setTimeout(()=>{
                     <Form>
                         <FormGroup>
                             <Label for='OrderInput'>Orden</Label><br/>
-                            <Input type='text' name='Orden' id='OrderInput'
+                            <Input type='text' name='Orden' id='OrderInput' 
                             value={inputValue} 
                             onChange={(e)=>{this.changeValue('inputValue', e.target.value)}} />
                         </FormGroup>
@@ -142,14 +154,17 @@ setTimeout(()=>{
                             onChange={(e)=>{this.changeValue('inputValue2', e.target.value)}}
                             />
                         </FormGroup>
+                        <FormGroup>
+                        <Label for='exampleFile'>Agregar imagen</Label>
+                        <Input type='file' id='Picture' value={inputPicture} onChange={(e)=>{
+                            console.log("files", e.target.files);
+                            this.uploadPic(e.target.files, e.target)
+                        }}/>
+                        </FormGroup>
+                        <img id='Pic' src='' width='100vw'/>
                         <Button color='info' onClick={this.action}>
                          {this.state.edit ? 'Guardar cambios' : 'Agregar'}
                         </Button>
-                        <FormGroup>
-                        <Label for='exampleFile'>Agregar imagen</Label>
-                        <Input type='file' id='Picture' value={inputPicture} onchange={this.uploadFile}/>
-                        </FormGroup>
-                        <img id='Pic' src='' width='100vw'/>
                     </Form>
                   </Col>
                   <Col xs='2'>
@@ -174,6 +189,7 @@ setTimeout(()=>{
                          <td>{item.data.Orden}</td>
                          <td>{item.data.Género}</td>
                          <td>{item.data.Especie}</td>
+                         <td>{item.data.Imagen}</td>
                          <td><Button color='warning' onClick={()=> this.getCol1(item.id)}>Editar</Button></td>
                          <td><Button color='danger'onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button></td>
                         </tr>
