@@ -7,9 +7,9 @@ class Footer extends React.Component {
     render(){
         return (
             <footer>
-                <button onClick={ this.handleClick } className='FooterButtons'>Nueva entrada</button>
-                <button className='FooterButtons'>Editar entrada</button>
-                <button className='FooterButtons'>Eliminar entrada</button>
+                <button onClick={ this.handleClick } className='FooterButtons'>Nuevo cuaderno</button>
+                <button className='FooterButtons'>Editar cuaderno</button>
+                <button className='FooterButtons'>Eliminar cuaderno</button>
             </footer>
                 
         )

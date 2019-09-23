@@ -53,14 +53,11 @@ margin-left: 24%;
   padding-top: -10px;
   margin-top: 3%;
 }
-.FooterButtons:hover {
+.FooterButtons:hover, .GoogLogButton:hover {
 box-shadow: 4px 4px 10px 2px white;
-font-size: 20.5px;
+transform: scale(1.1);
 }
-.GoogLogButton:hover {
-  box-shadow: 4px 4px 10px 2px white;
-  font-size: 18.5px;   
-}
+
 .Text
  {
 color: #FAFAFA;
@@ -83,18 +80,17 @@ padding: 2%;
   color: #FAFAFA;
   font-size: 25px;
   float: top;
-  margin: 6% 0% 5% 2%;
+  margin: -3% 0% 3% 2%;
   font-family: inherit;
 }
 .Notebooks {
-  margin-left: 14%;
+  margin: -1.5% 0% 2% 14%;
   float: left;
-  margin-top: -2.5%;
 }
 .FooterButtons {
   display: inline;
   width: 190px;
-  height: 77px;
+  height: 67px;
   background: #EEEEEE;
   border-radius: 25px;
   margin-left: 5%;
@@ -114,7 +110,7 @@ body {
   background-color: black;
 }
 .Collections:hover {
-width: 215px;
+transform: scale(1.1);
 box-shadow: 4px 4px 15px 0px white;
 }
 .ColNotes {
