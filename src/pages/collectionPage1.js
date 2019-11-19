@@ -2,7 +2,7 @@ import React from 'react';
 import FBApp from '../FirestoreConfig';
 import 'firebase/firestore';
 import 'firebase/storage';
-import {Table, Button, Row, Col, Input, Fade, Form, FormGroup, Label, Modal, ModalHeader, ModalFooter, ModalBody} from 'reactstrap';
+import {Table, Button, Row, Col, Input, Fade, Form, FormGroup, Label} from 'reactstrap';
 
 // const db = FBApp.firestore();
 //db.settings({timestampsInSnapshots:true});
@@ -22,6 +22,7 @@ class CollectionPage1 extends React.Component {
         inputValue:'',
         inputValue1:'',
         inputValue2:'',
+        iputValue3:'',
         inputPicture:'',
         edit:false,
         id:'',
@@ -47,7 +48,7 @@ class CollectionPage1 extends React.Component {
    };
 
     save = () => {
-        const { inputValue, inputValue1, inputValue2, inputPicture, edit } = this.state;
+        const { inputValue, inputValue1, inputValue2, inputValue3, inputPicture, edit } = this.state;
         let taskFile = this.storage.child(inputValue1 + '-'+ this.files[0].name).put(this.files[0])
         !edit ? 
         taskFile.then(snapshot => {
@@ -59,6 +60,7 @@ class CollectionPage1 extends React.Component {
                     Orden: inputValue,
                     Género: inputValue1,
                     Especie: inputValue2,
+                    Localidad: inputValue3,
                     url: data
                 }).then(()=>{
                     this.message('Agregado')
@@ -79,6 +81,7 @@ getCol1=(id)=>{
                 inputValue:doc.data().Orden,
                 inputValue1:doc.data().Género,
                 inputValue2:doc.data().Especie,
+                inputValue3:doc.data().Localidad,
                 inputPicture: doc.data().Imagen,
                 edit:true,
                 id:doc.id
@@ -96,11 +99,12 @@ deleteCol1=(id)=>{
 }
 
 update=()=>{
-    const{ id,inputValue, inputValue1, inputValue2, inputPicture} = this.state;
+    const{ id,inputValue, inputValue1, inputValue2, inputValue3, inputPicture} = this.state;
     this.db.collection('1').doc(id).update({
         Orden: inputValue,
         Género: inputValue1,
         Especie: inputValue2,
+        Localidad: inputValue3,
         Imagen: inputPicture
     }).then(()=>{
         this.message('Actualizado')
@@ -113,7 +117,7 @@ update=()=>{
 }
     uploadPic=(files)=>{
  
-        const{id,inputValue, inputValue1, inputValue2, inputPicture} = this.state;
+        const{id,inputValue, inputValue1, inputValue2, inputValue3, inputPicture} = this.state;
         //const storageRef = this.storage.ref('images');
         const picFile =this.storage.child(inputValue1 + '-'+ files[0].name);
         //const file=files.item(0);
@@ -140,10 +144,14 @@ setTimeout(()=>{
 },3000);
 }
   render() {
-      const {items, inputValue, inputValue1, inputValue2, inputPicture} = this.state;
+      const {items, inputValue, inputValue1, inputValue2, inputValue3, inputPicture} = this.state;
+      
       return (
+        <div>
+        <div> 
           <div className='ColNotes'>
-              <Row>
+            
+              <Row> 
                   <Col xs='10'>
                     <Form>
                         <FormGroup>
@@ -164,6 +172,13 @@ setTimeout(()=>{
                             <Input type='text' name='Especie' id='SpInput'
                             value2={inputValue2}
                             onChange={(e)=>{this.changeValue('inputValue2', e.target.value)}}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for='LocInput'>Localidad</Label><br/>
+                            <Input type='text' name='Localidad' id='LocInput'
+                            value3={inputValue3}
+                            onChange={(e)=>{this.changeValue('inputValue3', e.target.value)}}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -190,6 +205,7 @@ setTimeout(()=>{
                          <td>{item.data.Orden}</td>
                          <td>{item.data.Género}</td>
                          <td>{item.data.Especie}</td>
+                         <td>{item.data.Localidad}</td>
                          <td>{item.data.Imagen}</td>
                          <td><img id='Pic' src={item.data.url} width='300vw'/></td>
                          <td><Button color='warning' onClick={()=> this.getCol1(item.id)}>Editar</Button></td>
@@ -199,6 +215,8 @@ setTimeout(()=>{
                     </tbody>
                 </Table>
             </div>
+        </div>
+        </div>
         )
     }
   }

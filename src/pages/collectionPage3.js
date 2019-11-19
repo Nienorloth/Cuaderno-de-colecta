@@ -1,16 +1,29 @@
 import React from 'react';
 import FBApp from '../FirestoreConfig';
 import 'firebase/firestore';
-import {Table, Button, Row, Col, InputGroup, Input, Fade} from 'reactstrap';
+import 'firebase/storage';
+import {Table, Button, Row, Col, Input, Fade, Form, FormGroup, Label, Modal, ModalHeader, ModalFooter, ModalBody} from 'reactstrap';
+import Back from './../components/back';
 
 const db = FBApp.firestore();
 db.settings({timestampsInSnapshots:true});
 
 class CollectionPage3 extends React.Component {
 
+    constructor(props)
+    {
+        super(props)
+        this.db = FBApp.firestore();
+        this.storage = FBApp.storage().ref('images');
+        this.fileInput = React.createRef();
+    }
     state = {
         items:[],
-        inputValue: '',
+        inputValue:'',
+        inputValue1:'',
+        inputValue2:'',
+        iputValue3:'',
+        inputPicture:'',
         edit:false,
         id:'',
         fadeIn:false,
@@ -18,7 +31,7 @@ class CollectionPage3 extends React.Component {
     }
     
     componentDidMount(){
-        db.collection('3').onSnapshot((snapShots)=>{
+        this.db.collection('3').onSnapshot((snapShots)=>{
             this.setState({
                 items:snapShots.docs.map(doc=>{
                     return {id:doc.id,data:doc.data()}
@@ -29,34 +42,47 @@ class CollectionPage3 extends React.Component {
     });
   }
 
-changeValue=(e)=>{
-this.setState({
-    inputValue:e.target.value
-})
+    changeValue = (key, val) => {
+        this.setState({[key]:val})
 
-};
+   };
 
-action = () => {
-    const { inputValue, edit } = this.state;
+    save = () => {
+        const { inputValue, inputValue1, inputValue2, inputValue3, inputPicture, edit } = this.state;
+        let taskFile = this.storage.child(inputValue1 + '-'+ this.files[0].name).put(this.files[0])
+        !edit ? 
+        taskFile.then(snapshot => {
+            console.log(snapshot)
+            snapshot.ref.getDownloadURL()
+            .then(data=> {
+                //document.querySelector('#Pic').setAttribute('src', data);
+                this.db.collection('3').add({
+                    Orden: inputValue,
+                    Género: inputValue1,
+                    Especie: inputValue2,
+                    Localidad: inputValue3,
+                    url: data
+                }).then(()=>{
+                    this.message('Agregado')
+                }).catch((e)=>{
+                    console.log(e)
+                    this.message('Error')
+                });
+            });
+        }):
+        this.update();
+    };
 
-    !edit ? 
-    db.collection('3').add({
-        item: inputValue
-    }).then(()=>{
-        this.message('Agregado')
-    }).catch(()=>{
-        this.message('Error')
-    }) :
-    this.update();
-};
-
-getCol3=(id)=>{
-    let docRef=db.collection('3').doc(id);
-
+getCol1=(id)=>{
+    let docRef = this.db.collection('3').doc(id);
     docRef.get().then((doc)=>{
         if(doc.exists){
             this.setState({
-                inputValue:doc.data().item,
+                inputValue:doc.data().Orden,
+                inputValue1:doc.data().Género,
+                inputValue2:doc.data().Especie,
+                inputValue3:doc.data().Localidad,
+                inputPicture: doc.data().Imagen,
                 edit:true,
                 id:doc.id
             })
@@ -67,17 +93,19 @@ getCol3=(id)=>{
         console.log(error);
     })
 };
-
-deleteCol3=(id)=>{
-    db.collection('3').doc(id).delete()
+deleteCol1=(id)=>{
+    this.db.collection('3').doc(id).delete()
     this.message('Eliminado')
 }
 
-
 update=()=>{
-    const{id,inputValue} = this.state;
-    db.collection('3').doc(id).update({
-        item:inputValue
+    const{ id,inputValue, inputValue1, inputValue2, inputValue3, inputPicture} = this.state;
+    this.db.collection('3').doc(id).update({
+        Orden: inputValue,
+        Género: inputValue1,
+        Especie: inputValue2,
+        Localidad: inputValue3,
+        Imagen: inputPicture
     }).then(()=>{
         this.message('Actualizado')
         this.setState({
@@ -87,62 +115,107 @@ update=()=>{
         this.message('Error');
     })
 }
-message=(message)=>{
-    this.setState({
-        inputValue:'',
-        fadeIn: true,
-        message: message
-    })
-    
-    setTimeout(()=>{
-        this.setState({
-            fadeIn:false,
-            message:''
+    uploadPic=(files)=>{
+ 
+        const{id,inputValue, inputValue1, inputValue2, inputValue3, inputPicture} = this.state;
+        //const storageRef = this.storage.ref('images');
+        const picFile =this.storage.child(inputValue1 + '-'+ files[0].name);
+        //const file=files.item(0);
+        const task = picFile.put(files[0]);
+
+        task.then(snapshot => {
+            console.log(snapshot)
+            snapshot.ref.getDownloadURL()
+            .then(data=> document.querySelector('#Pic').setAttribute('src', data))
         })
-    },3000);
-    }    
+    }
+message=(message)=>{
+this.setState({
+    inputValue:'',
+    fadeIn: true,
+    message: message
+})
+
+setTimeout(()=>{
+    this.setState({
+        fadeIn:false,
+        message:''
+    })
+},3000);
+}
   render() {
-      const {items, inputValue} = this.state;
+      const {items, inputValue, inputValue1, inputValue2, inputValue3, inputPicture} = this.state;
+      
       return (
+      
           <div className='ColNotes'>
+          <Back/>
               <Row>
                   <Col xs='10'>
-                      <InputGroup>
-                        <Input 
-                        placeholder='Agregar un nuevo espécimen'
-                        value={inputValue}
-                        onChange={this.changeValue}
-                        />
-                      </InputGroup>
-                  </Col>
-                  <Col xs='2'>
-                    <div className='text-right'>
-                        <Button color='info' onClick={this.action}>
+                    <Form>
+                        <FormGroup>
+                            <Label for='OrderInput'>Orden</Label><br/>
+                            <Input type='text' name='Orden' id='OrderInput' 
+                            value={inputValue} 
+                            onChange={(e)=>{this.changeValue('inputValue', e.target.value)}} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for='GenreInput'>Género</Label><br/>
+                            <Input type='text' name='Género' id='GenreInput'
+                            value1={inputValue1}
+                            onChange={(e)=>{this.changeValue('inputValue1', e.target.value)}}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for='SpInput'>Especie</Label><br/>
+                            <Input type='text' name='Especie' id='SpInput'
+                            value2={inputValue2}
+                            onChange={(e)=>{this.changeValue('inputValue2', e.target.value)}}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for='LocInput'>Localidad</Label><br/>
+                            <Input type='text' name='Localidad' id='LocInput'
+                            value3={inputValue3}
+                            onChange={(e)=>{this.changeValue('inputValue3', e.target.value)}}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                        <Label for='exampleFile'>Agregar imagen</Label>
+                        <Input type='file' id='Picture' ref={ this.fileInput } onChange={(e)=>{
+                            this.files = e.target.files
+                        }}/>
+                        </FormGroup>
+                        <Button color='info' onClick={this.save}>
                          {this.state.edit ? 'Guardar cambios' : 'Agregar'}
                         </Button>
-                    </div>
-                  </Col>
+                    </Form>
+                    </Col>
               </Row>
-              <Fade in={this.state.fadeIn} tag='h6' className='mt-3 text-center text-success'>
+                    <Fade in={this.state.fadeIn} tag='h6' className='mt-3 text-center text-success'>
                   {this.state.message}
               </Fade>
-
               <Table hover className='text-center'>
                   <thead>
                   </thead>
                   <tbody>
                     {items && items !== undefined ? items.map( (item, key) => (
                         <tr key={key}>
-                         <td>{item.data.item}</td>
-                         <td><Button color='warning' onClick={()=> this.getCol3(item.id)}>Editar</Button></td>
-                         <td><Button color='danger' onClick={()=> this.deleteCol3(item.id)}>Eliminar</Button></td>
+                         <td>{item.data.Orden}</td>
+                         <td>{item.data.Género}</td>
+                         <td>{item.data.Especie}</td>
+                         <td>{item.data.Localidad}</td>
+                         <td>{item.data.Imagen}</td>
+                         <td><img id='Pic' src={item.data.url} width='300vw'/></td>
+                         <td><Button color='warning' onClick={()=> this.getCol1(item.id)}>Editar</Button></td>
+                         <td><Button color='danger'onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button></td>
                         </tr>
                     )): null }
-                  </tbody>
-              </Table>
-          </div>
-      )
+                    </tbody>
+                </Table>
+            </div>
+        )
+    }
   }
-}
 
 export default CollectionPage3;
