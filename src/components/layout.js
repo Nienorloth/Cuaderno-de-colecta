@@ -4,9 +4,8 @@ import Back from './back';
 function Layout (props) {
     // const children = props.children;
     return (
-        <div className='Layout'>
+        <div className='Layout'> 
             <NavBar />
-            <Back />
             {props.children}
         </div>
     )

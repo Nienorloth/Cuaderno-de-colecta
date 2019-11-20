@@ -85,18 +85,19 @@ padding: 2%;
   font-family: inherit;
 }
 .Notebooks {
-  margin: 2.5% 0% 2% 2%;
+  margin: 1.5% 8% 10% 10%;
   float: left;
 }
 .BackButton {
   display: inline;
-  width: 190px;
+  width: 90px;
   background: #EEEEEE;
   border-radius: 25px;
   margin-bottom: 5%;
   color: black;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.35);
   margin-bottom: 4.4%;
+  text-decoration: none;
 }
 .CollectionsBody {
   margin-top: 10%;
@@ -115,8 +116,25 @@ box-shadow: 4px 4px 15px 0px white;
 .ColNotes {
   color: white;
   margin-top: 10%;
+  float: left;
 }
 .notebookTitle{
   color: white;
   text-align: center;
 }
+.EnterButton{
+  width: 80px;
+  background: white;
+  border-radius: 4px;
+  font-size: 18px;
+  color: black;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  margin-left: 200px;
+  margin-top: -80px;
+}
+.EnterButton:hover{
+  box-shadow: 4px 4px 10px 2px white;
+  transform: scale(1.1);  
+}
+

@@ -3,6 +3,7 @@ import FBApp from '../FirestoreConfig';
 import 'firebase/firestore';
 import 'firebase/storage';
 import {Table, Button, Row, Col, Input, Fade, Form, FormGroup, Label} from 'reactstrap';
+import Back from '../components/back';
 
 // const db = FBApp.firestore();
 //db.settings({timestampsInSnapshots:true});
@@ -148,6 +149,7 @@ setTimeout(()=>{
       
       return (
         <div>
+        <Back/>
         <div> 
           <div className='ColNotes'>
             
@@ -199,17 +201,17 @@ setTimeout(()=>{
               <Table hover className='text-center'>
                   <thead>
                   </thead>
-                  <tbody>
+                  <tbody className="Items">
                     {items && items !== undefined ? items.map( (item, key) => (
                         <tr key={key}>
-                         <td>{item.data.Orden}</td>
-                         <td>{item.data.Género}</td>
-                         <td>{item.data.Especie}</td>
-                         <td>{item.data.Localidad}</td>
-                         <td>{item.data.Imagen}</td>
+                         <p>Orden: <br/> {item.data.Orden}</p>
+                         <p>Género: <br/> {item.data.Género}</p>
+                         <p>Especie: <br/> {item.data.Especie}</p>
+                         <p>Localidad: <br/> {item.data.Localidad}</p>
+                         <td>{item.data.Imagen}</td><br/>
                          <td><img id='Pic' src={item.data.url} width='300vw'/></td>
-                         <td><Button color='warning' onClick={()=> this.getCol1(item.id)}>Editar</Button></td>
-                         <td><Button color='danger'onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button></td>
+                         <Button className="itemButtons" color='warning' onClick={()=> this.getCol1(item.id)}>Editar</Button>
+                         <Button className="itemButtons" color='danger'onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button>
                         </tr>
                     )): null }
                     </tbody>

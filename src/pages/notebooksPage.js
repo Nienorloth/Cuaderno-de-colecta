@@ -15,9 +15,9 @@ class NotebooksPage extends React.Component {
            
            <Link to='/pages/collectionPage1' className='Notebooks'><img alt='1' className='Collections' width='200' src={Insects}/><h3 className="notebookTitle">Insectos</h3></Link>
            
-           <Link to='/pages/collectionPage2' className='Notebooks'><img alt='2' className='Collections'width='200' src={Plants}/><h3 className="notebookTitle">Plantas</h3></Link>
+           <Link to='/pages/collectionPage2' className='Notebooks'><img alt='2' className='Collections' width='200' src={Plants}/><h3 className="notebookTitle">Plantas</h3></Link>
           
-           <Link to='/pages/collectionPage3' className='Notebooks'><img alt='3' className='Collections'width='200' src={Fossils}/><h3 className="notebookTitle">Fósiles</h3></Link>
+           <Link to='/pages/collectionPage3' className='Notebooks'><img alt='3' className='Collections' width='200' src={Fossils}/><h3 className="notebookTitle">Fósiles</h3></Link>
        
         </body>
         </div>

@@ -7,7 +7,7 @@ class NavBar extends React.Component {
         return (
         <div>
             <header className='App-header'>
-            <img src={Logo} width='290'/> <span><Login /></span>
+            <img src={Logo} width='290'/>
             </header>
         </div>
         );
