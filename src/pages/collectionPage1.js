@@ -133,6 +133,9 @@ update=()=>{
 message=(message)=>{
 this.setState({
     inputValue:'',
+    inputValue1:'',
+    inputValue2:'',
+    inputValue3:'',
     fadeIn: true,
     message: message
 })
@@ -148,11 +151,10 @@ setTimeout(()=>{
       const {items, inputValue, inputValue1, inputValue2, inputValue3, inputPicture} = this.state;
       
       return (
-        <div>
+        <div >
         <Back/>
         <div> 
           <div className='ColNotes'>
-            
               <Row> 
                   <Col xs='10'>
                     <Form>
@@ -165,21 +167,21 @@ setTimeout(()=>{
                         <FormGroup>
                             <Label for='GenreInput'>Género</Label><br/>
                             <Input type='text' name='Género' id='GenreInput'
-                            value1={inputValue1}
+                            value={inputValue1}
                             onChange={(e)=>{this.changeValue('inputValue1', e.target.value)}}
                             />
                         </FormGroup>
                         <FormGroup>
                             <Label for='SpInput'>Especie</Label><br/>
                             <Input type='text' name='Especie' id='SpInput'
-                            value2={inputValue2}
+                            value={inputValue2}
                             onChange={(e)=>{this.changeValue('inputValue2', e.target.value)}}
                             />
                         </FormGroup>
                         <FormGroup>
                             <Label for='LocInput'>Localidad</Label><br/>
                             <Input type='text' name='Localidad' id='LocInput'
-                            value3={inputValue3}
+                            value={inputValue3}
                             onChange={(e)=>{this.changeValue('inputValue3', e.target.value)}}
                             />
                         </FormGroup>
@@ -189,7 +191,7 @@ setTimeout(()=>{
                             this.files = e.target.files
                         }}/>
                         </FormGroup>
-                        <Button color='info' onClick={this.save}>
+                        <Button className="AddButton" onClick={this.save}>
                          {this.state.edit ? 'Guardar cambios' : 'Agregar'}
                         </Button>
                     </Form>
@@ -198,6 +200,7 @@ setTimeout(()=>{
                     <Fade in={this.state.fadeIn} tag='h6' className='mt-3 text-center text-success'>
                   {this.state.message}
               </Fade>
+              <div className="itemsContainer">
               <Table hover className='text-center'>
                   <thead>
                   </thead>
@@ -210,12 +213,13 @@ setTimeout(()=>{
                          <p>Localidad: <br/> {item.data.Localidad}</p>
                          <td>{item.data.Imagen}</td><br/>
                          <td><img id='Pic' src={item.data.url} width='300vw'/></td>
-                         <Button className="itemButtons" color='warning' onClick={()=> this.getCol1(item.id)}>Editar</Button>
-                         <Button className="itemButtons" color='danger'onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button>
+                         <Button className="itemButtonUp"  onClick={()=> this.getCol1(item.id)}>Editar</Button>
+                         <Button className="itemButtonDel"  onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button>
                         </tr>
                     )): null }
                     </tbody>
                 </Table>
+                </div>
             </div>
         </div>
         </div>

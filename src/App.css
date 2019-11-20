@@ -89,15 +89,13 @@ padding: 2%;
   float: left;
 }
 .BackButton {
-  display: inline;
-  width: 90px;
-  background: #EEEEEE;
+  width: 80px;
+  background: white;
   border-radius: 25px;
   margin-bottom: 5%;
   color: black;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.35);
   margin-bottom: 4.4%;
-  text-decoration: none;
 }
 .CollectionsBody {
   margin-top: 10%;
@@ -136,5 +134,24 @@ box-shadow: 4px 4px 15px 0px white;
 .EnterButton:hover{
   box-shadow: 4px 4px 10px 2px white;
   transform: scale(1.1);  
+}
+.row{
+  padding: 5%;
+  margin-top: -30%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+}
+.itemButtonUp{
+background-color: darkorange;
+}
+.itemButtonDel{
+  background-color: red;
+}
+.AddButton{
+  background-color: #10b344; 
+}
+.itemsContainer{
+  float: left;
 }
 
