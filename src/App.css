@@ -132,7 +132,7 @@ box-shadow: 4px 4px 15px 0px white;
   margin-top: -80px;
 }
 .EnterButton:hover{
-  box-shadow: 4px 4px 10px 2px white;
+  box-shadow: 4px 8px 10px 2px white;
   transform: scale(1.1);  
 }
 .row{

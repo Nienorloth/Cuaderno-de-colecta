@@ -200,7 +200,6 @@ setTimeout(()=>{
                     <Fade in={this.state.fadeIn} tag='h6' className='mt-3 text-center text-success'>
                   {this.state.message}
               </Fade>
-              <div className="itemsContainer">
               <Table hover className='text-center'>
                   <thead>
                   </thead>
@@ -219,7 +218,6 @@ setTimeout(()=>{
                     )): null }
                     </tbody>
                 </Table>
-                </div>
             </div>
         </div>
         </div>
