@@ -200,24 +200,27 @@ setTimeout(()=>{
                     <Fade in={this.state.fadeIn} tag='h6' className='mt-3 text-center text-success'>
                   {this.state.message}
               </Fade>
-              <Table hover className='text-center'>
-                  <thead>
-                  </thead>
-                  <tbody className="Items">
+              <div hover >
+                  <div className='text-center'>
                     {items && items !== undefined ? items.map( (item, key) => (
-                        <tr key={key}>
-                         <p>Orden: <br/> {item.data.Orden}</p>
-                         <p>Género: <br/> {item.data.Género}</p>
-                         <p>Especie: <br/> {item.data.Especie}</p>
-                         <p>Localidad: <br/> {item.data.Localidad}</p>
-                         <td>{item.data.Imagen}</td><br/>
-                         <td><img id='Pic' src={item.data.url} width='300vw'/></td>
-                         <Button className="itemButtonUp"  onClick={()=> this.getCol1(item.id)}>Editar</Button>
-                         <Button className="itemButtonDel"  onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button>
-                        </tr>
+                        <div className="flip-card" key={key}>
+                            <div className="flip-card-inner">
+                                <div className="flip-card-front">
+                                     <img id='Pic' src={item.data.url} width='300vw'/>
+                                </div>
+                                <div className="flip-card-back">
+                                    <p>Orden: {item.data.Orden}</p>
+                                    <p>Género: {item.data.Género}</p>
+                                    <p>Especie: {item.data.Especie}</p>
+                                    <p>Localidad: {item.data.Localidad}</p>
+                                    <Button className="itemButtonUp"  onClick={()=> this.getCol1(item.id)}>Editar</Button>
+                                    <Button className="itemButtonDel"  onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button>
+                                </div>
+                             </div>
+                        </div>
                     )): null }
-                    </tbody>
-                </Table>
+                    </div>
+                </div>
             </div>
         </div>
         </div>
