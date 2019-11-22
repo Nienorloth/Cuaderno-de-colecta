@@ -159,15 +159,13 @@ height: 1.7em;
 .text-center{
   width: 1200px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: -6%;
 }
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
-  align: center;
   float: left;
   width: 310px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
@@ -211,10 +209,11 @@ height: 1.7em;
   line-height: .8em;  
 }
 #Pic{
-  width: 310px;
+  width: 100%;
 }
 #Picture{
   height: 1.8em;
- 
 }
-
+.Form{
+  margin-right: 100px;
+}
