@@ -126,14 +126,13 @@ box-shadow: 4px 4px 15px 0px white;
   border-radius: 4px;
   font-size: 18px;
   color: black;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin-left: 200px;
   margin-top: -80px;
 }
 .EnterButton:hover{
-  box-shadow: 4px 8px 10px 2px white;
-  transform: scale(1.1);  
+  box-shadow: 2px 4px 5px 1px white;
 }
 .row{
   padding: 5%;
