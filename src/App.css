@@ -153,9 +153,6 @@ height: 1.7em;
 .AddButton{
   background-color: #10b344; 
 }
-.itemsContainer{
-  float: left;
-}
 .text-center{
   width: 1200px;
   display: flex;

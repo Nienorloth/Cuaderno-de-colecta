@@ -48,9 +48,10 @@ class Template extends React.Component {
    };
 
     save = () => {
+        console.log(this.state);
         const { inputValue, inputValue1, inputValue2, inputValue3, inputPicture, edit } = this.state;
-        let taskFile = this.storage.child(inputValue1 + '-'+ this.files[0].name).put(this.files[0])
-        !edit ? 
+        let taskFile = this.storage.child(inputValue1 + '-'+inputPicture.name).put(inputPicture)
+        if(!edit) { 
         taskFile.then(snapshot => {
             console.log(snapshot)
             snapshot.ref.getDownloadURL()
@@ -69,25 +70,32 @@ class Template extends React.Component {
                     this.message('Error')
                 });
             });
-        }):
-        this.update();
+        })
+    } else {
+        taskFile.then(snapshot => {
+            snapshot.ref.getDownloadURL()
+                .then(data => {
+                    this.update(data);
+                })
+        })
+    }
     };
 
 getCol1=(id)=>{
     let docRef = this.db.collection(this.props.collection).doc(id);
     docRef.get().then((doc)=>{
+        console.log(doc.exists);
         if(doc.exists){
+            console.log(doc.data());
             this.setState({
                 inputValue:doc.data().Orden,
                 inputValue1:doc.data().Género,
                 inputValue2:doc.data().Especie,
                 inputValue3:doc.data().Localidad,
-                inputPicture: doc.data().Imagen,
+                inputPicture: doc.data().url,
                 edit:true,
                 id:doc.id
             })
-        } else {
-            console.log('El documento no existe')
         }
     }).catch((error)=>{
         console.log(error);
@@ -98,14 +106,15 @@ deleteCol1=(id)=>{
     this.message('Eliminado')
 }
 
-update=()=>{
-    const{ id,inputValue, inputValue1, inputValue2, inputValue3, inputPicture} = this.state;
+update=(url)=>{
+    const{ id,inputValue, inputValue1, inputValue2, inputValue3} = this.state;
+    console.log('-->', url);
     this.db.collection(this.props.collection).doc(id).update({
         Orden: inputValue,
         Género: inputValue1,
         Especie: inputValue2,
         Localidad: inputValue3,
-        Imagen: inputPicture
+        url: url
     }).then(()=>{
         this.message('Actualizado')
         this.setState({
@@ -186,7 +195,7 @@ setTimeout(()=>{
                         <FormGroup>
                         <Label for='exampleFile'>Agregar imagen</Label>
                         <Input type='file' id='Picture' ref={ this.fileInput } onChange={(e)=>{
-                            this.files = e.target.files
+                           this.setState({inputPicture: e.target.files[0]});
                         }}/>
                         </FormGroup>
                         <Button className="AddButton" onClick={this.save}>
@@ -198,7 +207,7 @@ setTimeout(()=>{
                     <Fade in={this.state.fadeIn} tag='h6' className='mt-3 text-center text-success'>
                   {this.state.message}
               </Fade>
-              <div hover >
+              <div >
                   <div className='text-center'>
                     {items && items !== undefined ? items.map( (item, key) => (
                         <div className="flip-card" key={key}>
@@ -211,7 +220,7 @@ setTimeout(()=>{
                                     <p>Género: {item.data.Género}</p>
                                     <p>Especie: {item.data.Especie}</p>
                                     <p>Localidad: {item.data.Localidad}</p>
-                                    <Button className="itemButtonUp"  onClick={()=> this.getCol1(item.id)}>Editar</Button>
+                                   {/* <Button className="itemButtonUp"  onClick={()=> this.getCol1(item.id)}>Editar</Button>*/}
                                     <Button className="itemButtonDel"  onClick={()=> this.deleteCol1(item.id)}>Eliminar</Button>
                                 </div>
                              </div>
