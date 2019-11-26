@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "410f449797c211108e3e791d485de156",
+    "revision": "99f477f4ecc0878bc027f830e52b792a",
     "url": "/Cuaderno-de-colecta/index.html"
   },
   {
-    "revision": "18042b19f3374cfee9cf",
-    "url": "/Cuaderno-de-colecta/static/css/main.73047003.chunk.css"
+    "revision": "4b9b09faa202144cec93",
+    "url": "/Cuaderno-de-colecta/static/css/main.df1b80e3.chunk.css"
   },
   {
-    "revision": "45e2639f4e4891fc7d95",
-    "url": "/Cuaderno-de-colecta/static/js/2.82d97284.chunk.js"
+    "revision": "2c859a668be79dc24dfc",
+    "url": "/Cuaderno-de-colecta/static/js/2.a6442382.chunk.js"
   },
   {
-    "revision": "18042b19f3374cfee9cf",
-    "url": "/Cuaderno-de-colecta/static/js/main.08d0935b.chunk.js"
+    "revision": "4b9b09faa202144cec93",
+    "url": "/Cuaderno-de-colecta/static/js/main.b848f288.chunk.js"
   },
   {
     "revision": "fef99ebbd83861c67c89",
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Cuaderno-de-colecta/static/media/Naturalist.04e119fa.png"
   },
   {
-    "revision": "ec703aaa4f2a004c160a1e8fb314f14d",
-    "url": "/Cuaderno-de-colecta/static/media/fossils.ec703aaa.png"
+    "revision": "043d564aaf582a6654ce136be90dfd0a",
+    "url": "/Cuaderno-de-colecta/static/media/fungii.043d564a.jpg"
   },
   {
     "revision": "299da055bf1d5b28c917f68b51a505db",
