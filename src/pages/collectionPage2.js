@@ -2,7 +2,7 @@ import React from 'react';
 import Template from '../components/template';
 import Back from '../components/back';
 
-class CollectionPage1 extends React.Component {
+class CollectionPage2 extends React.Component {
     render() {
     return (
         <div>
@@ -14,4 +14,4 @@ class CollectionPage1 extends React.Component {
 }
                 
 
-export default CollectionPage1;
+export default CollectionPage2;

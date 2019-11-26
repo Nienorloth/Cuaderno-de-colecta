@@ -204,9 +204,6 @@ setTimeout(()=>{
                     </Form>
                     </Col>
               </Row>
-                    <Fade in={this.state.fadeIn} tag='h6' className='mt-3 text-center text-success'>
-                  {this.state.message}
-              </Fade>
               <div >
                   <div className='text-center'>
                     {items && items !== undefined ? items.map( (item, key) => (

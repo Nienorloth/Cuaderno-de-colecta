@@ -137,9 +137,9 @@ box-shadow: 4px 4px 15px 0px white;
 .row{
   padding: 5%;
   margin-top: -30%;
-  display: flex;
-  justify-content: flex-end;
   margin-bottom: 10%;
+  position: absolute;
+  left: 25%;
 }
 .itemButtonUp{
 background-color: darkorange;
@@ -148,6 +148,12 @@ height: 1.7em;
 .itemButtonDel{
   background-color: red;
   height: 1.7em;
+}
+.AddButton:hover{
+  box-shadow: 2px 4px 5px 1px white; 
+}
+.itemButtonDel:hover{
+  box-shadow: 2px 4px 5px 1px white;
 }
 .AddButton{
   background-color: #10b344; 
@@ -213,4 +219,9 @@ height: 1.7em;
 }
 .Form{
   margin-right: 100px;
+}
+#added {
+position: flex;
+justify-content: flex-start;
+align-content: flex-start; 
 }
