@@ -37,8 +37,8 @@ class Login extends Component {
                 }
                 {
                     user ?
-                    <button  className='GoogLogButton' onClick={this.handleClickOut}><img src={GoogleImg} width='50' className='GoogImg' /> Cerrar sesión</button>
-                    : <button className='GoogLogButton1' onClick={this.handleClick}><img src={GoogleImg} width='50' className='GoogImg' /> Iniciar sesión con Google</button>
+                    <button type="button"  className='GoogLogButton' onClick={this.handleClickOut}><img src={GoogleImg} width='50' className='GoogImg' /> Cerrar sesión</button>
+                    : <button type="button" className='GoogLogButton1' onClick={this.handleClick}><img src={GoogleImg} width='50' className='GoogImg' /> Iniciar sesión con Google</button>
                 }
                 
             </div>

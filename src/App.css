@@ -246,7 +246,7 @@ align-content: flex-start;
   }
   .GoogLogButton {
     position: relative;
-    top: 45%;
+    top: 145%;
     left: -37%;
     width: auto;   
     font-size: 10px;
@@ -258,14 +258,11 @@ align-content: flex-start;
     line-height: 80%;
     font-weight: bold;
     position: relative;
-    top: 45%;
+    top: 195%;
     left: -40%;    
   }
   .GoogLogText {
-    position: relative;
-    bottom: 48%;
-    left: -25%;
-    font-size: 17px;
+    display: none;
   }
   .Notebooks {
     width: 100px;
