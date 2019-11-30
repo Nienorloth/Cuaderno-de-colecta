@@ -5,7 +5,7 @@ class Back extends React.Component {
     render(){
         return (
             <div className="Back"> 
-           <Link to='/pages/notebooksPage' style={{ textDecoration: 'none' }}><button className='BackButton'>Salir</button></Link>
+           <Link to='/pages/notebooksPage' style={{ textDecoration: 'none' }}><button className='BackButton'>Cambiar de cuaderno</button></Link>
             </div>        
         )
     }

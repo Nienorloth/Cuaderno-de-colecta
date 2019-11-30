@@ -9,7 +9,7 @@ class LoginPage extends React.Component {
             <p className='Text'>
              Registra, almacena y organiza tus colectas. 
             </p>
-            <Link to='/pages/notebooksPage'><button className='EnterButton'>Entrar</button></Link>
+            {/* <Link to='/pages/notebooksPage'><button className='EnterButton'>Entrar</button></Link> */}
         </body>
 
         </div>

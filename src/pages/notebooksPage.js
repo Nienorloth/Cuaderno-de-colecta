@@ -9,9 +9,9 @@ class NotebooksPage extends React.Component {
         return (
             <div className='NotebooksBody'>
             <h1 className='CollectionText'>
-             Selecciona cuaderno
+             Selecciona un cuaderno
             </h1>
-        <body>
+        <body className="NotebooksContainer">
            
            <Link to='/pages/collectionPage1' className='Notebooks'><img alt='1' className='Collections' width='200' src={Insects}/><h3 className="notebookTitle">Insectos</h3></Link>
            
