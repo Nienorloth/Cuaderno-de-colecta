@@ -132,6 +132,7 @@ box-shadow: 4px 4px 15px 0px white;
   text-align: center;
   margin-left: 200px;
   margin-top: -80px;
+  display: none;
 }
 .EnterButton:hover{
   box-shadow: 2px 4px 5px 1px white;
@@ -238,29 +239,31 @@ align-content: flex-start;
     background-image: none;
   }
   .Text {
-    left: 32%;
+    left: 35%;
     font-size: 19px;
     line-height: 140%;
     position: absolute;
     top: 35%;
   }
   .GoogLogButton {
-    position: relative;
-    top: 145%;
-    left: -37%;
-    width: auto;   
-    font-size: 10px;
+    display: none;
   }
   .GoogLogButton1 {
-    height: 35px;
-    width: 100px;
-    font-size: 10px;
-    line-height: 80%;
-    font-weight: bold;
-    position: relative;
-    top: 195%;
-    left: -40%;    
+    display: none;  
   }
+  .EnterButton{
+    width: 80px;
+    background: white;
+    border-radius: 4px;
+    font-size: 18px;
+    color: black;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 35%;
+    left: -17%;
+  }  
   .GoogLogText {
     display: none;
   }
@@ -268,13 +271,13 @@ align-content: flex-start;
     width: 100px;
     margin: 5% 25% 0 22%;
     position: relative;
-    right: 5%;
+    right: 3%;
   }
   .CollectionText {
     text-align: center;
-    margin-top: 35%;
+    margin-top: 15%;
     position: relative;
-    right: 5%;
+    right: 4%;
     font-size: 17px;
   }
   .GoogImg {
@@ -290,7 +293,7 @@ align-content: flex-start;
   .Form {
     font-size: 11px;
     position: absolute;
-    top: 600%;
+    top: 300%;
     left: -150%;
   }
   #Picture {
@@ -300,7 +303,7 @@ align-content: flex-start;
   }
   .text-center{
     position: absolute;
-    top: 90%;
+    top: 70%;
   }
   
 }
