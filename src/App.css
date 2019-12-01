@@ -254,7 +254,7 @@ align-content: flex-start;
   }
   .EnterButton{
     width: 80px;
-    background: white;
+    background: #29A19C;
     border-radius: 4px;
     font-size: 18px;
     color: black;
@@ -264,6 +264,7 @@ align-content: flex-start;
     position: absolute;
     top: 35%;
     left: -17%;
+    box-shadow: 2px 4px 5px 1px white;
   }  
   .GoogLogText {
     display: none;
@@ -290,6 +291,7 @@ align-content: flex-start;
     left: 68%;
     font-size: 10px;
     width: 70px;
+    box-shadow: 2px 4px 5px 1px white;
   }
   .Form {
     font-size: 11px;
@@ -307,7 +309,53 @@ align-content: flex-start;
     top: 70%;
   }
 }
-  @media only screen and (min-width: 768px) and (max-width: 1199px) {
-
-  
+  @media only screen and (min-width: 767px) and (max-width: 1199px) {
+    .LoginBack {
+      background-image: url('images/backpad.png');
+      width: 100%;
+      height: 70%;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }    
+    .Text {
+      margin-top: 5%;
+    }
+    .GoogLogButton {
+      display: none;
+    }
+    .GoogLogButton1 {
+      display: none;  
+    }
+    .EnterButton{
+      width: 80px;
+      background: #29A19C;
+      border-radius: 4px;
+      font-size: 18px;
+      color: black;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: block;
+      position: absolute;
+      top: 25%;
+      left: 37%;
+      box-shadow: 2px 4px 5px 1px white;
+    }  
+    .GoogLogText {
+      display: none;
+    }
+    .text-center{
+      position: absolute;
+      top: 65%;
+    }  
+    .Form {
+      position: absolute;
+      top: 400%;
+      left: -150%;
+    }  
+  .BackButton {
+    position: absolute;
+    top: 15%;
+    box-shadow: 2px 4px 5px 1px white;
 }
+  }
