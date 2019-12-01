@@ -29,6 +29,7 @@ color: white;
 display: inline;
 font-size: 25px;
 margin-left: 24%;
+display: none;
 }
 .GoogImg {
   display: inline;
@@ -51,10 +52,12 @@ margin-left: 24%;
   margin-top: 3%;
   padding-top: 1%;
   padding-bottom: .5%;
-  line-height: 80%;;
+  line-height: 80%;
+  display: none;
 }
 .BackButton:hover, .GoogLogButton:hover,
-.GoogLogButton1:hover {
+.GoogLogButton1:hover, 
+.Home:hover {
 box-shadow: 4px 4px 10px 2px white;
 transform: scale(1.1);
 }
@@ -100,6 +103,14 @@ padding: 2%;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.35);
   margin-bottom: 4.4%;
 }
+.Home {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  background-color: #29A19C;
+  font-weight: bold;
+  width: 70px;
+}
 .CollectionsBody {
   margin-top: 10%;
 }
@@ -123,9 +134,9 @@ box-shadow: 4px 4px 15px 0px white;
   color: white;
   text-align: center;
 }
-.EnterButton{
+.EnterButton {
   width: 80px;
-  background: white;
+  background-color: #29A19C;
   border-radius: 4px;
   font-size: 18px;
   color: black;
@@ -133,7 +144,6 @@ box-shadow: 4px 4px 15px 0px white;
   text-align: center;
   margin-left: 200px;
   margin-top: -80px;
-  display: none;
 }
 .EnterButton:hover{
   box-shadow: 2px 4px 5px 1px white;
@@ -308,6 +318,10 @@ align-content: flex-start;
     position: absolute;
     top: 70%;
   }
+  .Home {
+    box-shadow: 4px 4px 10px 2px white;
+    }
+  
 }
   @media only screen and (min-width: 767px) and (max-width: 1199px) {
     .LoginBack {
@@ -358,4 +372,7 @@ align-content: flex-start;
     top: 15%;
     box-shadow: 2px 4px 5px 1px white;
 }
+.Home {
+  box-shadow: 4px 4px 10px 2px white;
   }
+}

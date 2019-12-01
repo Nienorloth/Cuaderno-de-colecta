@@ -13,6 +13,8 @@ class NotebooksPage extends React.Component {
             </h1>
         <body className="NotebooksContainer">
            
+           <Link to='/' ><button className='Home'>Inicio</button></Link> 
+
            <Link to='/pages/collectionPage1' className='Notebooks'><img alt='1' className='Collections' width='200' src={Insects}/><h3 className="notebookTitle">Insectos</h3></Link>
            
            <Link to='/pages/collectionPage2' className='Notebooks'><img alt='2' className='Collections' width='200' src={Plants}/><h3 className="notebookTitle">Plantas</h3></Link>
